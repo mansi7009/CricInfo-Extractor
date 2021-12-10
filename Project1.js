@@ -3,7 +3,6 @@
 // the real purpose is to learn how to extract information and get experience with js
 // A very good reason to ever make a project is to have good fun
 
-
 // npm init -y
 // npm install minimist
 // npm install jsdom
@@ -12,7 +11,6 @@
 // npm install pdf-lib
 
 // node Project1.js --url=https://www.espncricinfo.com/series/icc-cricket-world-cup-2019-1144415/match-results --dataFolder=worldCup --excelFile=data.csv
-
 
 // download and process the html from web
 // convert web to json 
@@ -24,9 +22,9 @@ let minimist = require("minimist");
 let path = require('path');
 let axios = require("axios");       
 let pdf = require("pdf-lib");
+let jsdom = require("jsdom");
 let fs = require('fs');
 let xls = require('excel4node');
-
 let args = minimist(process.argv);
 
 
@@ -35,7 +33,6 @@ let args = minimist(process.argv);
 let dwldKaPromise = axios.get(args.url);
 dwldKaPromise.then(function (response) {
     let html = response.data;
-
     let dom = new jsdom.JSDOM(html);
     let document = dom.window.document;
 
@@ -263,5 +260,3 @@ function createScoreCard(teamName, match, matchFileName) {
         });
     });
 }
-
-
